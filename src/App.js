@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { PostList } from './contants/PostList';
-import MyButton from './contants/UI.jsx/MyButton';
+import MyButton from './contants/UI/MyButton';
 
 function App() {
   const [data, setData] = useState([
