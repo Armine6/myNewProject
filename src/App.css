@@ -1,0 +1,11 @@
+.postItemInform{
+  border: 3px solid white;
+  border-radius: 15px;
+  background-color: aquamarine;
+  color: aliceblue;
+  width: 350px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
