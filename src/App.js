@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import './App.css';
+import FormItem from './contants/FormItem';
 import PostList from './contants/PostList';
-import MyButton from './contants/UI/button/MyButton';
-import MyInput from './contants/UI/input/MyInput';
+import SortByInform from './contants/UI/SortByInform';
+
 
 function App() {
   const [data, setData] = useState([
@@ -10,26 +11,27 @@ function App() {
     { id: 2, title: "JavaScript1", descript: "Lorem de dug lorin dugh" },
     { id: 3, title: "JavaScript2", descript: "Lorem de dugh" }
   ])
-  const [value, setValue] = useState(
-    { id: data.length + 1, title: '', descript: '' }
-  )
-   const dataChange = (e) => {
+ 
+   const dataChange = (e,newPost,clearPost) => {
     e.preventDefault()
-    setData([...data, value])
-    setValue({ ...value, title: '', descript: '' })
+    setData([...data, newPost])
+    clearPost()
   }
   const deleteItem=(id)=>{
    setData(data.filter(item => item.id !== id))
   }
+  const setValue = (val) => {
+
+  }
   return (
     <div className="App">
-      <form className='createPosts'>
-
-        <MyInput type="text" placeholder='Enter Title' value={value.title} onChange={e => setValue({ ...value, title: e.target.value })} />
-        <MyInput type="text" placeholder='Enter Description' value={value.descript} onChange={e => setValue({ ...value, descript: e.target.value })} />
-        <MyButton onClick={dataChange}>Create post</MyButton>
-      </form>
-      <PostList title="My project's Posts" posts={data} deleteItem = {deleteItem}/>
+     <FormItem dataChange={dataChange} setValue={setValue}/>
+     <SortByInform title="Sort By" options={[
+      {title: 'Title', value:"title"},
+      {title: 'Desc', value:"descript"}
+     ]}/>
+      {data.length ? <PostList title="My project's Posts"  posts={data} deleteItem={deleteItem}/>  :  <h2> My project don't has post</h2>}
+      
 
     </div>
   );
